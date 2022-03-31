@@ -2742,9 +2742,12 @@ packages:
     resolution: {integrity: sha512-wAO6zF9zxA3u+7AkMPqw9LjoUCjSxfFvINQj3E/DceTt6uEz1XZLraDhdg2EYmvVwTBSGlLYsUw8bDmx0754Mw==}
     peerDependencies:
       vue: ^3.2.0
+<<<<<<< HEAD
     peerDependenciesMeta:
       vue:
         optional: true
+=======
+>>>>>>> d6bcf7a6132315f2cf7b7f16b3cc5d47d56cb093
     dependencies:
       '@vue/devtools-api': 6.1.4
     dev: true
@@ -2753,9 +2756,12 @@ packages:
     resolution: {integrity: sha512-wAO6zF9zxA3u+7AkMPqw9LjoUCjSxfFvINQj3E/DceTt6uEz1XZLraDhdg2EYmvVwTBSGlLYsUw8bDmx0754Mw==}
     peerDependencies:
       vue: ^3.2.0
+<<<<<<< HEAD
     peerDependenciesMeta:
       vue:
         optional: true
+=======
+>>>>>>> d6bcf7a6132315f2cf7b7f16b3cc5d47d56cb093
     dependencies:
       '@vue/devtools-api': 6.1.4
       vue: 3.2.31

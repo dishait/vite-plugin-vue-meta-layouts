@@ -33,7 +33,11 @@ const usePlugin = (options?: Partial<Options>): Plugin => {
 				return resolvedVirtualModuleId
 			}
 		},
+<<<<<<< HEAD
 		load(id) {
+=======
+		load(code, id) {
+>>>>>>> d6bcf7a6132315f2cf7b7f16b3cc5d47d56cb093
 			if (id === resolvedVirtualModuleId) {
 				return createVirtualModuleCode({
 					target,
