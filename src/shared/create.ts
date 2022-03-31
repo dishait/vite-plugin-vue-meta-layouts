@@ -28,7 +28,6 @@ export const createVirtualModuleCode = async (
 	options: VirtualModuleCodeOptions
 ) => {
 	const { target, defaultLayout } = options
-<<<<<<< HEAD
 
 	const glob = `${normalizePath(target)}/**/*.vue`
 
@@ -63,25 +62,4 @@ export const setupLayouts = routes => {
 		}
 	})
 }`
-=======
-	return `
-	export const useMetaLayouts = (router) => {
-
-		export const layouts = import.meta.globEager('${target}/*.vue').map(layout => layout.default)
-
-		const resolvedRoutes = router.options.routes.map(route => {
-			return { 
-			  path: route.path,
-			  component: layouts[route.meta?.layout || '${defaultLayout}'],
-			  children: [ {...route, path: ''} ]
-			}
-		})
-
-		router.options.routes = resolvedRoutes
-		return {
-			layouts,
-			resolvedRoutes
-		}
-	}`
->>>>>>> d6bcf7a6132315f2cf7b7f16b3cc5d47d56cb093
 }
