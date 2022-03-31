@@ -14,6 +14,7 @@ importers:
       vite: ^2.9.0
       vite-plugin-restart: '*'
       vitest: ^0.1.27
+      vue-router: ^4.0.14
     devDependencies:
       '@types/node': 17.0.23
       bumpp: 7.1.1
@@ -25,6 +26,7 @@ importers:
       vite: 2.9.0
       vite-plugin-restart: 0.1.1_vite@2.9.0
       vitest: 0.1.27_c8@7.11.0
+      vue-router: 4.0.14
 
   examples/vite:
     specifiers:
@@ -33,12 +35,14 @@ importers:
       vite-plugin-inspect: ^0.3.15
       vite-plugin-vue-meta-layouts: workspace:*
       vue: ^3.2.31
+      vue-router: ^4.0.14
     devDependencies:
       '@vitejs/plugin-vue': 2.3.1_vite@2.9.0+vue@3.2.31
       vite: 2.9.0
       vite-plugin-inspect: 0.3.15_vite@2.9.0
       vite-plugin-vue-meta-layouts: link:../..
       vue: 3.2.31
+      vue-router: 4.0.14_vue@3.2.31
 
 packages:
 
@@ -189,6 +193,10 @@ packages:
     dependencies:
       '@vue/compiler-dom': 3.2.31
       '@vue/shared': 3.2.31
+    dev: true
+
+  /@vue/devtools-api/6.1.4:
+    resolution: {integrity: sha512-IiA0SvDrJEgXvVxjNkHPFfDx6SXw0b/TUkqMcDZWNg9fnCAHbTpoo59YfJ9QLFkwa3raau5vSlRVzMSLDnfdtQ==}
     dev: true
 
   /@vue/reactivity-transform/3.2.31:
@@ -2394,6 +2402,23 @@ packages:
       - less
       - sass
       - stylus
+    dev: true
+
+  /vue-router/4.0.14:
+    resolution: {integrity: sha512-wAO6zF9zxA3u+7AkMPqw9LjoUCjSxfFvINQj3E/DceTt6uEz1XZLraDhdg2EYmvVwTBSGlLYsUw8bDmx0754Mw==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@vue/devtools-api': 6.1.4
+    dev: true
+
+  /vue-router/4.0.14_vue@3.2.31:
+    resolution: {integrity: sha512-wAO6zF9zxA3u+7AkMPqw9LjoUCjSxfFvINQj3E/DceTt6uEz1XZLraDhdg2EYmvVwTBSGlLYsUw8bDmx0754Mw==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@vue/devtools-api': 6.1.4
+      vue: 3.2.31
     dev: true
 
   /vue/3.2.31:
