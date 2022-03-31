@@ -1,0 +1,22 @@
+{
+  "name": "vite-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "dev:open": "vite --open",
+    "dev:host": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview",
+    "preview:open": "vite preview --open",
+    "preview:host": "vite preview --host"
+  },
+  "author": "markthree",
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.1",
+    "vite": "^2.9.0",
+    "vite-plugin-inspect": "^0.3.15",
+    "vite-plugin-name": "workspace:*",
+    "vue": "^3.2.31"
+  }
+}

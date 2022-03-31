@@ -1,0 +1,33 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "dev",
+			"type": "npm",
+			"script": "dev",
+			"group": "test"
+		},
+		{
+			"label": "build",
+			"type": "npm",
+			"script": "build",
+			"group": "build"
+		},
+		{
+			"label": "play",
+			"type": "npm",
+			"script": "play",
+			"group": "test"
+		},
+		{
+			"label": "init:info",
+			"type": "npm",
+			"script": "init:info"
+		},
+		{
+			"label": "release",
+			"type": "npm",
+			"script": "release"
+		}
+	]
+}

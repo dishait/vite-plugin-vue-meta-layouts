@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"target": "ES6",
+		"module": "ES6",
+		"declaration": true,
+		"moduleResolution": "node",
+		"declarationDir": "dist/types", // 类型声明
+		"emitDeclarationOnly": true, // 只输出声明文件
+		"types": ["vitest"], // 引入包类型
+		"skipLibCheck": true, // 跳过包检查
+		"isolatedModules": true, // 孤立模块，把所有文件当做模块处理，避免书写 esbuild 转译不支持的特性
+		"esModuleInterop": true, // 更好的包兼容
+		"forceConsistentCasingInFileNames": true // 区分文件名大小写
+	},
+	"include": ["src"],
+	"exclude": ["dist", "node_modules"]
+}

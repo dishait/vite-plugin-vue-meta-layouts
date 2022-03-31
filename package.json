@@ -1,0 +1,67 @@
+{
+  "version": "0.0.0",
+  "name": "vite-plugin-name",
+  "description": "开箱即用的 vite 插件模板",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/name/repo.git"
+  },
+  "exports": {
+    "./*": "./*",
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "client.d.ts"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "coverage": "vitest --coverage",
+    "dev": "pnpm run build -- --watch",
+    "init:info": "plop --plopfile scripts/init.js",
+    "release": "bumpp --commit --push --tag && npm publish",
+    "play": "pnpm -C examples/vite run dev",
+    "play:open": "pnpm -C examples/vite run dev:open",
+    "play:host": "pnpm -C examples/vite run dev:host",
+    "play:build": "pnpm -C examples/vite run build",
+    "play:preview": "pnpm -C examples/vite run preview",
+    "play:preview:open": "pnpm -C examples/vite run preview:open",
+    "play:preview:host": "pnpm -C examples/vite run preview:host"
+  },
+  "keywords": [
+    "vite",
+    "plugin",
+    "template"
+  ],
+  "author": {
+    "name": "name",
+    "email": "xx@xx.com",
+    "url": "https://github.com/name"
+  },
+  "bugs": {
+    "email": "xx@xx.com",
+    "url": "https://github.com/name/repo/issues"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "bumpp": "^7.1.1",
+    "c8": "^7.11.0",
+    "esno": "^0.14.1",
+    "plop": "^3.0.5",
+    "tsup": "^5.12.1",
+    "typescript": "^4.6.3",
+    "vite": "^2.9.0",
+    "vite-plugin-restart": "*",
+    "vitest": "^0.1.27"
+  }
+}
