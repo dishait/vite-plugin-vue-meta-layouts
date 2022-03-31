@@ -61,10 +61,6 @@
     "tsup": "^5.12.1",
     "typescript": "^4.6.3",
     "vite": "^2.9.0",
-<<<<<<< HEAD
-=======
-    "vite-plugin-restart": "*",
->>>>>>> d6bcf7a6132315f2cf7b7f16b3cc5d47d56cb093
     "vitest": "^0.1.27",
     "vue-router": "^4.0.14"
   },
