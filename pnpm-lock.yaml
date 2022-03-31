@@ -31,13 +31,13 @@ importers:
       '@vitejs/plugin-vue': ^2.3.1
       vite: ^2.9.0
       vite-plugin-inspect: ^0.3.15
-      vite-plugin-name: workspace:*
+      vite-plugin-vue-meta-layouts: workspace:*
       vue: ^3.2.31
     devDependencies:
       '@vitejs/plugin-vue': 2.3.1_vite@2.9.0+vue@3.2.31
       vite: 2.9.0
       vite-plugin-inspect: 0.3.15_vite@2.9.0
-      vite-plugin-name: link:../..
+      vite-plugin-vue-meta-layouts: link:../..
       vue: 3.2.31
 
 packages:

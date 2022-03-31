@@ -1,6 +1,6 @@
-# vite-plugin-template
+# vite-plugin-vue-meta-layouts
 
-开箱即用的 vite 插件模板
+vite 的 vue-router 的元信息布局系统
 
 <br />
 
@@ -90,7 +90,7 @@ pnpm release
 
 ## License
 
-Made with name
+Made with [markthree](https://github.com/markthree)
 
 Published under [MIT License](./LICENSE).
 

@@ -3,11 +3,11 @@ import { createPluginName } from './shared/create'
 
 interface Options {}
 
-const useName = createPluginName()
+const useName = createPluginName(false)
 
 const usePlugin = (options?: Partial<Options>): Plugin => {
 	return {
-		name: useName('name')
+		name: useName('vue-meta-layouts')
 	}
 }
 

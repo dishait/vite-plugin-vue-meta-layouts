@@ -1,13 +1,13 @@
 {
   "version": "0.0.0",
-  "name": "vite-plugin-name",
-  "description": "开箱即用的 vite 插件模板",
+  "name": "vite-plugin-vue-meta-layouts",
+  "description": "vite 的 vue-router 的元信息布局系统",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/name/repo.git"
+    "url": "git+https://github.com/dishait/vite-plugin-vue-meta-layouts.git"
   },
   "exports": {
     "./*": "./*",
@@ -43,13 +43,13 @@
     "template"
   ],
   "author": {
-    "name": "name",
-    "email": "xx@xx.com",
-    "url": "https://github.com/name"
+    "email": "1801982702@qq.com",
+    "name": "markthree",
+    "url": "https://github.com/markthree"
   },
   "bugs": {
-    "email": "xx@xx.com",
-    "url": "https://github.com/name/repo/issues"
+    "email": "1801982702@qq.com",
+    "url": "https://github.com/dishait/vite-plugin-vue-meta-layouts/issues"
   },
   "license": "MIT",
   "devDependencies": {
