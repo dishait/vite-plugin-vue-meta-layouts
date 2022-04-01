@@ -197,6 +197,13 @@ const getRoutes = createGetRoutes(router)
 console.log(getRoutes())
 ```
 
+<br />
+<br />
+
+## 参考 👀
+
+该插件实现思路来自 [vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)，但采用不同的 `hmr` 风格。
+
 
 <br />
 <br />
