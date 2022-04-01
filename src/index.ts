@@ -7,10 +7,12 @@ import {
 
 interface Options {
 	/**
+	 * layouts dir
 	 * @default "src/layouts"
 	 */
 	target?: string
 	/**
+	 * default layout
 	 * @default "default"
 	 */
 	defaultLayout?: string
