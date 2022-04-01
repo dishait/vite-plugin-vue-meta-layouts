@@ -200,10 +200,14 @@ console.log(getRoutes())
 <br />
 <br />
 
-## 参考 👀
+## 实现 👀
 
-该插件实现思路来自 [vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)，但采用不同的 `hmr` 风格。
+布局实现思路来自 [vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)。 
 
+
+但用了更简单方案 👉 [虚拟文件](https://vitejs.cn/guide/api-plugin.html#importing-a-virtual-file) 与 [Glob 导入](https://vitejs.cn/guide/features.html#glob-import)。
+
+该方案可以自动地做合理的 `hmr`。
 
 <br />
 <br />
