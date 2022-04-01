@@ -22,14 +22,17 @@ export const createVirtualModuleID = (name: string) => {
 interface VirtualModuleCodeOptions {
 	target: string
 	defaultLayout: string
+	importMode: 'sync' | 'async'
 }
 
 export const createVirtualModuleCode = async (
 	options: VirtualModuleCodeOptions
 ) => {
-	const { target, defaultLayout } = options
+	const { target, defaultLayout, importMode } = options
 
 	const glob = `${normalizePath(target)}/**/*.vue`
+	const isSync = importMode === 'sync'
+	const globMethod = isSync ? 'globEager' : 'glob'
 
 	return `
 export const createGetRoutes = (router, withLayout = false) => {
@@ -42,13 +45,14 @@ export const createGetRoutes = (router, withLayout = false) => {
 
 export const setupLayouts = routes => {
 	const layouts = {}
-
-	const modules = import.meta.globEager('${glob}')
 	
+	const modules = import.meta.${globMethod}('${glob}')
+
 	const matchRegExp = new RegExp("(?<=src/layouts/).*(?=.vue)")
+	
 	Object.entries(modules).forEach(([name, module]) => {
 		const [key] = name.match(matchRegExp)
-		layouts[key] = module.default
+		layouts[key] = ${isSync ? 'module.default' : 'module'}
 	})
 	
 	return routes.map(route => {
@@ -62,4 +66,12 @@ export const setupLayouts = routes => {
 		}
 	})
 }`
+}
+
+export const createVirtualLayouts = (
+	importMode: 'sync' | 'async'
+) => {
+	if (importMode === 'sync') {
+		return
+	}
 }

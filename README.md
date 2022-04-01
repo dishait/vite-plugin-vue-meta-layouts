@@ -158,7 +158,8 @@ export default defineConfig({
         Vue(), 
         MetaLayouts({
             target: 'src/layouts', // 布局目录，默认 src/layouts
-            defaultLayout: 'default' // 默认布局，默认为 default
+            defaultLayout: 'default', // 默认布局，默认为 default
+            importMode: 'sync' // 加载模式，支持 sync 和 async。默认为自动处理，SSG 时为 sync，非 SSG 时为 async
         })
     ]
 })

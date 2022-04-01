@@ -16,6 +16,10 @@ interface Options {
 	 * @default "default"
 	 */
 	defaultLayout?: string
+	/**
+	 * default auto resolve
+	 */
+	importMode: 'sync' | 'async'
 }
 
 const useName = createPluginName(false)
@@ -23,7 +27,8 @@ const useName = createPluginName(false)
 const usePlugin = (options?: Partial<Options>): Plugin => {
 	const {
 		target = 'src/layouts',
-		defaultLayout = 'default'
+		defaultLayout = 'default',
+		importMode = process.env.VITE_SSG ? 'sync' : 'async'
 	} = options || {}
 
 	const { virtualModuleId, resolvedVirtualModuleId } =
@@ -39,6 +44,7 @@ const usePlugin = (options?: Partial<Options>): Plugin => {
 			if (id === resolvedVirtualModuleId) {
 				return createVirtualModuleCode({
 					target,
+					importMode,
 					defaultLayout
 				})
 			}
