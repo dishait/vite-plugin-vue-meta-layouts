@@ -1,5 +1,5 @@
 {
-  "version": "0.0.5",
+  "version": "0.0.6",
   "name": "vite-plugin-vue-meta-layouts",
   "description": "vite 的 vue-router 的元信息布局系统",
   "main": "./dist/index.js",
