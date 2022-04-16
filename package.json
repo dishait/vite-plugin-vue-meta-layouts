@@ -1,5 +1,5 @@
 {
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"name": "vite-plugin-vue-meta-layouts",
 	"description": "vite 的 vue-router 的元信息布局系统",
 	"main": "./dist/index.js",
@@ -28,7 +28,7 @@
 		"coverage": "vitest --coverage",
 		"dev": "pnpm run build -- --watch",
 		"init:info": "plop --plopfile scripts/init.js",
-		"release": "bumpp --commit --push --tag && npm publish",
+		"release": "pnpm build && bumpp --commit --push --tag && npm publish",
 		"play": "pnpm -C examples/vite run dev",
 		"play:open": "pnpm -C examples/vite run dev:open",
 		"play:host": "pnpm -C examples/vite run dev:host",
