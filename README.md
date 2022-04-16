@@ -11,10 +11,10 @@
 <br />
 <br />
 
-
 ## 使用 🦖
 
 ### 基础
+
 #### 安装
 
 ```shell
@@ -28,10 +28,7 @@ import Vue from '@vitejs/plugin-vue'
 import MetaLayouts from 'vite-plugin-vue-meta-layouts'
 
 export default defineConfig({
-    plugins: [
-        Vue(), 
-        MetaLayouts()
-    ]
+	plugins: [Vue(), MetaLayouts()]
 })
 ```
 
@@ -41,13 +38,15 @@ export default defineConfig({
 import { setupLayouts } from 'virtual:meta-layouts'
 import { createRouter, createWebHistory } from 'vue-router'
 
-const routes = setupLayouts([{
-    // ... 页面路由配置
-}])
+const routes = setupLayouts([
+	{
+		// ... 页面路由配置
+	}
+])
 
 const router = createRouter({
-    routes,
-    history: createWebHistory()
+	routes,
+	history: createWebHistory()
 })
 ```
 
@@ -55,8 +54,9 @@ const router = createRouter({
 
 ```html
 <template>
-    default
-    <router-view /> <!-- 视图出口 -->
+	default
+	<router-view />
+	<!-- 视图出口 -->
 </template>
 ```
 
@@ -65,20 +65,19 @@ const router = createRouter({
 例如创建 `layouts/other.vue`
 
 ```ts
-
 // 应用 layouts/default.vue 布局
 const home = {
-    path: '/',
-    component: () => import('./pages/home.vue')
+	path: '/',
+	component: () => import('./pages/home.vue')
 }
 
 // 应用 layouts/other.vue 布局
-const about =  {
-    path: '/about',
-    component: () => import('./pages/home.vue'),
-    meta: {
-        layout: 'other' // 通过元信息来管理布局
-    }
+const about = {
+	path: '/about',
+	component: () => import('./pages/home.vue'),
+	meta: {
+		layout: 'other' // 通过元信息来管理布局
+	}
 }
 
 const routes = setupLayouts([home, about])
@@ -104,11 +103,11 @@ import Pages from 'vite-plugin-pages' // 引入文件路由插件
 import MetaLayouts from 'vite-plugin-vue-meta-layouts'
 
 export default defineConfig({
-    plugins: [
-        Vue(), 
-        Pages(), // 配置文件路由插件
-        MetaLayouts()
-    ]
+	plugins: [
+		Vue(),
+		Pages(), // 配置文件路由插件
+		MetaLayouts()
+	]
 })
 ```
 
@@ -120,8 +119,8 @@ import { setupLayouts } from 'virtual:meta-layouts'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
-    routes: setupLayouts(fileRoutes), // 注册文件路由表
-    history: createWebHistory()
+	routes: setupLayouts(fileRoutes), // 注册文件路由表
+	history: createWebHistory()
 })
 ```
 
@@ -129,17 +128,9 @@ const router = createRouter({
 
 ```html
 <!-- 你的页面 -->
-<template>
-    内容
-</template>
+<template> 内容 </template>
 
-<route>
-{
-    meta: {
-        layout: 'other'
-    }
-}
-</route>
+<route> { meta: { layout: 'other' } } </route>
 ```
 
 <br />
@@ -154,17 +145,16 @@ import Vue from '@vitejs/plugin-vue'
 import MetaLayouts from 'vite-plugin-vue-meta-layouts'
 
 export default defineConfig({
-    plugins: [
-        Vue(), 
-        MetaLayouts({
-            target: 'src/layouts', // 布局目录，默认 src/layouts
-            defaultLayout: 'default', // 默认布局，默认为 default
-            importMode: 'sync' // 加载模式，支持 sync 和 async。默认为自动处理，SSG 时为 sync，非 SSG 时为 async
-        })
-    ]
+	plugins: [
+		Vue(),
+		MetaLayouts({
+			target: 'src/layouts', // 布局目录，默认 src/layouts
+			defaultLayout: 'default', // 默认布局，默认为 default
+			importMode: 'sync' // 加载模式，支持 sync 和 async。默认为自动处理，SSG 时为 sync，非 SSG 时为 async
+		})
+	]
 })
 ```
-
 
 <br />
 <br />
@@ -175,15 +165,14 @@ export default defineConfig({
 
 ```json
 {
-    "compilerOptions": {
-        "types": ["vite-plugin-/client"]
-    }
+	"compilerOptions": {
+		"types": ["vite-plugin-vue-meta-plugin/client"]
+	}
 }
 ```
 
 <br />
 <br />
-
 
 ### 注意
 
@@ -203,8 +192,7 @@ console.log(getRoutes())
 
 ## 实现 👀
 
-布局实现思路来自 [vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)。 
-
+布局实现思路来自 [vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)。
 
 但用了更简单方案 👉 [虚拟文件](https://vitejs.cn/guide/api-plugin.html#importing-a-virtual-file) 与 [Glob 导入](https://vitejs.cn/guide/features.html#glob-import)。
 
@@ -218,7 +206,6 @@ console.log(getRoutes())
 欢迎关注 **帝莎编程**
 
 - [官网](http://dishaxy.dishait.cn/)
-  
 - [Gitee](https://gitee.com/dishait)
 
 - [Github](https://github.com/dishait)
