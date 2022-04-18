@@ -30,7 +30,8 @@ export const createVirtualModuleCode = async (
 ) => {
 	const { target, defaultLayout, importMode } = options
 
-	const glob = `${normalizePath(target)}/**/*.vue`
+	const normalizedTarget = normalizePath(target)
+	const glob = `${normalizedTarget}/**/*.vue`
 	const isSync = importMode === 'sync'
 	const globMethod = isSync ? 'globEager' : 'glob'
 
@@ -47,11 +48,10 @@ export const setupLayouts = routes => {
 	const layouts = {}
 	
 	const modules = import.meta.${globMethod}('${glob}')
-
-	const matchRegExp = new RegExp("(?<=src/layouts/).*(?=.vue)")
 	
 	Object.entries(modules).forEach(([name, module]) => {
-		const [key] = name.match(matchRegExp)
+		
+		let key = name.replace("${normalizedTarget}/", '').replace('.vue', '')
 		layouts[key] = ${isSync ? 'module.default' : 'module'}
 	})
 	
