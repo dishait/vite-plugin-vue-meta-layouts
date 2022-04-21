@@ -67,11 +67,3 @@ export const setupLayouts = routes => {
 	})
 }`
 }
-
-export const createVirtualLayouts = (
-	importMode: 'sync' | 'async'
-) => {
-	if (importMode === 'sync') {
-		return
-	}
-}
