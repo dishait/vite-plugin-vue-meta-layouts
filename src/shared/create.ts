@@ -1,4 +1,4 @@
-import { normalizePath } from './base'
+import { isVite2, normalizePath } from './base'
 
 export const createPluginName = (
 	reusable: boolean = false
@@ -25,15 +25,27 @@ interface VirtualModuleCodeOptions {
 	importMode: 'sync' | 'async'
 }
 
+const createVirtualGlob = async (
+	target: string,
+	isSync: boolean
+) => {
+	const g = `${target}/**/*.vue`
+	if (await isVite2()) {
+		return isSync
+			? `import.meta.globEager(${g})`
+			: `import.meta.glob(${g})`
+	}
+	return `import.meta.glob(${g}, { eager: ${isSync} })`
+}
+
 export const createVirtualModuleCode = async (
 	options: VirtualModuleCodeOptions
 ) => {
 	const { target, defaultLayout, importMode } = options
 
 	const normalizedTarget = normalizePath(target)
-	const glob = `${normalizedTarget}/**/*.vue`
+
 	const isSync = importMode === 'sync'
-	const globMethod = isSync ? 'globEager' : 'glob'
 
 	return `
 export const createGetRoutes = (router, withLayout = false) => {
@@ -46,8 +58,11 @@ export const createGetRoutes = (router, withLayout = false) => {
 
 export const setupLayouts = routes => {
 	const layouts = {}
-	
-	const modules = import.meta.${globMethod}('${glob}')
+
+	const modules = ${await createVirtualGlob(
+		normalizedTarget,
+		isSync
+	)}
 	
 	Object.entries(modules).forEach(([name, module]) => {
 		
