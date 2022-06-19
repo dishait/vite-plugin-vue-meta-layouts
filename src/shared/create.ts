@@ -29,7 +29,7 @@ const createVirtualGlob = async (
 	target: string,
 	isSync: boolean
 ) => {
-	const g = `${target}/**/*.vue`
+	const g = `"${target}/**/*.vue"`
 	if (await isVite2()) {
 		return isSync
 			? `import.meta.globEager(${g})`
