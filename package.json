@@ -1,80 +1,69 @@
 {
-	"version": "0.1.1",
-	"name": "vite-plugin-vue-meta-layouts",
-	"description": "vite 的 vue-router 的元信息布局系统",
-	"main": "./dist/index.js",
-	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.ts",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/dishait/vite-plugin-vue-meta-layouts.git"
-	},
-	"exports": {
-		"./*": "./*",
-		".": {
-			"require": "./dist/index.js",
-			"import": "./dist/index.mjs",
-			"types": "./dist/index.d.ts"
-		}
-	},
-	"files": [
-		"dist",
-		"client.d.ts"
-	],
-	"scripts": {
-		"build": "tsup",
-		"test": "vitest",
-		"test:watch": "vitest --watch",
-		"coverage": "vitest --coverage",
-		"dev": "pnpm run build --watch",
-		"init:info": "plop --plopfile scripts/init.js",
-		"release": "pnpm build && bumpp --commit --push --tag && npm publish",
-		"play": "pnpm -C examples/vite run dev",
-		"play:open": "pnpm -C examples/vite run dev:open",
-		"play:host": "pnpm -C examples/vite run dev:host",
-		"play:build": "pnpm -C examples/vite run build",
-		"play:preview": "pnpm -C examples/vite run preview",
-		"play:preview:open": "pnpm -C examples/vite run preview:open",
-		"play:preview:host": "pnpm -C examples/vite run preview:host"
-	},
-	"keywords": [
-		"vite",
-		"plugin",
-		"template"
-	],
-	"author": {
-		"email": "1801982702@qq.com",
-		"name": "markthree",
-		"url": "https://github.com/markthree"
-	},
-	"bugs": {
-		"email": "1801982702@qq.com",
-		"url": "https://github.com/dishait/vite-plugin-vue-meta-layouts/issues"
-	},
-	"license": "MIT",
-	"devDependencies": {
-		"@types/node": "^18.15.10",
-		"bumpp": "^9.0.0",
-		"c8": "^7.13.0",
-		"esno": "^0.16.3",
-		"plop": "^3.1.2",
-		"tsup": "^6.7.0",
-		"typescript": "^5.0.2",
-		"vite": "^4.2.1",
-		"vitest": "^0.29.7",
-		"vue-router": "^4.1.6"
-	},
-	"peerDependencies": {
-		"vue-router": ">=4.0.14"
-	},
-	"pnpm": {
-		"peerDependencyRules": {
-			"ignoreMissing": [
-				"vue"
-			]
-		}
-	},
-	"dependencies": {
-		"local-pkg": "^0.4.3"
-	}
+  "version": "0.1.1",
+  "name": "vite-plugin-vue-meta-layouts",
+  "description": "vite 的 vue-router 的元信息布局系统",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dishait/vite-plugin-vue-meta-layouts.git"
+  },
+  "exports": {
+    "./*": "./*",
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "client.d.ts"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "play:dev": "pnpm -C example dev",
+    "play:build": "pnpm -C example build",
+    "play:preview": "pnpm -C example preview",
+    "release": "pnpm build && bumpp --commit --push --tag && npm publish"
+  },
+  "keywords": [
+    "vite",
+    "plugin",
+    "template"
+  ],
+  "author": {
+    "email": "1801982702@qq.com",
+    "name": "markthree",
+    "url": "https://github.com/markthree"
+  },
+  "bugs": {
+    "email": "1801982702@qq.com",
+    "url": "https://github.com/dishait/vite-plugin-vue-meta-layouts/issues"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.15.10",
+    "bumpp": "^9.0.0",
+    "typescript": "^5.0.2",
+    "unbuild": "^1.1.2",
+    "vite": "^4.2.1",
+    "vue-router": "^4.1.6"
+  },
+  "peerDependencies": {
+    "vite": ">=2.0.0",
+    "vue-router": ">=4.0.14"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "vue"
+      ]
+    }
+  },
+  "dependencies": {
+    "local-pkg": "^0.4.3"
+  }
 }
