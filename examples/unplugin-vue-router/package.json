@@ -1,0 +1,25 @@
+{
+  "name": "vite-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "dev:open": "vite --open",
+    "dev:host": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview",
+    "preview:open": "vite preview --open",
+    "preview:host": "vite preview --host"
+  },
+  "author": "markthree",
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.1.0",
+    "@vue/compiler-sfc": "^3.2.47",
+    "unplugin-vue-router": "^0.5.4",
+    "vite": "^4.2.1",
+    "vite-plugin-inspect": "^0.7.18",
+    "vite-plugin-vue-meta-layouts": "workspace:*",
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
+  }
+}
