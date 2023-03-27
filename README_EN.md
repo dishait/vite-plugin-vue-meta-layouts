@@ -1,27 +1,27 @@
 # vite-plugin-vue-meta-layouts
 
-`vite` 的 `vue-router` 的元信息布局系统
+Vite's Vue-Router's meta-information layout system
 
 <br />
 
 ## README 🦉
 
-[English](./README_EN.md) | Chinese 
+English | [Chinese](./README.md) 
 
 <br />
 
 ## 动机 🤔
 
-[vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts) 的重写版本，在最新版本的 `vite` 中有合理的 `hmr` ！！
+A rewritten version of [vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)  with a reasonable 'HMR' in the latest version of 'Vite' !!
 
 <br />
 <br />
 
-## 使用 🦖
+## usage 🦖
 
-### 基础
+### basic
 
-#### 安装
+#### install
 
 ```shell
 npm i vite-plugin-vue-meta-layouts -D
@@ -38,7 +38,7 @@ export default defineConfig({
 })
 ```
 
-#### 使用
+#### usage
 
 ```ts
 import { setupLayouts } from 'virtual:meta-layouts'
@@ -46,7 +46,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = setupLayouts([
 	{
-		// ... 页面路由配置
+		// ... Page routes
 	}
 ])
 
@@ -56,33 +56,32 @@ const router = createRouter({
 })
 ```
 
-1. 创建 `layouts/default.vue` 默认布局，此时页面都会被应用该布局
+1. `layouts/default.vue` 👉 The default layout, which is now applied to the page
 
 ```html
 <template>
 	default
 	<router-view />
-	<!-- 视图出口 -->
 </template>
 ```
 
-2. 当然你可以配置不同的的布局
+2. Of course you can configure different layouts
 
-例如创建 `layouts/other.vue`
+For example `layouts/other.vue`
 
 ```ts
-// 应用 layouts/default.vue 布局
+// apply layouts/default.vue layout
 const home = {
 	path: '/',
 	component: () => import('./pages/home.vue')
 }
 
-// 应用 layouts/other.vue 布局
+// apply layouts/other.vue layout
 const about = {
 	path: '/about',
 	component: () => import('./pages/home.vue'),
 	meta: {
-		layout: 'other' // 通过元信息来管理布局
+		layout: 'other' // Manage layouts through meta information
 	}
 }
 
@@ -91,13 +90,13 @@ const routes = setupLayouts([home, about])
 
 <br />
 
-### 搭配文件路由
+### Pair with file routing
 
-当然也支持文件路由哦 🤗
+Of course, file routing is also supported 🤗
 
 #### [vite-plugin-pages](https://github.com/hannoeru/vite-plugin-pages)
 
-##### 安装
+##### install
 
 ```shell
 npm i vite-plugin-pages -D
@@ -107,13 +106,13 @@ npm i vite-plugin-pages -D
 // vite.config.js
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
-import Pages from 'vite-plugin-pages' // 引入文件路由插件
+import Pages from 'vite-plugin-pages' // Introducing the file routing plugin
 import MetaLayouts from 'vite-plugin-vue-meta-layouts'
 
 export default defineConfig({
 	plugins: [
 		Vue(),
-		Pages(), // 配置文件路由插件
+		Pages(), // Configure the configuration file routing plug-in
 		MetaLayouts()
 	]
 })
@@ -122,21 +121,21 @@ export default defineConfig({
 ##### 使用
 
 ```ts
-import fileRoutes from '~pages' // 引入文件路由表
+import fileRoutes from '~pages' // file routes
 import { setupLayouts } from 'virtual:meta-layouts'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
-	routes: setupLayouts(fileRoutes), // 注册文件路由表
+	routes: setupLayouts(fileRoutes), // Register the file routes
 	history: createWebHistory()
 })
 ```
 
-此时可以通过页面中的自定义块 `route` 的 `meta` 来做布局配置
+At this time, the layout can be configured by `meta` of the custom block `route` in the page
 
 ```html
-<!-- 你的页面 -->
-<template> 内容 </template>
+<!-- Your page -->
+<template> content </template>
 
 <route> { meta: { layout: 'other' } } </route>
 ```
@@ -146,21 +145,21 @@ const router = createRouter({
 
 #### [unplugin-vue-router](https://github.com/posva/unplugin-vue-router)
 
-##### 安装
+##### install
 
 ```shell
 npm i unplugin-vue-router -D
 ```
 
-##### 使用
+##### usage
 
 ```ts
-import { routes } from "vue-router/auto/routes"; // 引入文件路由表
+import { routes } from "vue-router/auto/routes"; // file routes
 import { setupLayouts } from "virtual:meta-layouts";
 import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
-  routes: setupLayouts(routes), // 注册文件路由表
+  routes: setupLayouts(routes), // Register the file routes
   history: createWebHistory(),
 });
 ```
@@ -169,7 +168,7 @@ const router = createRouter({
 <br />
 <br />
 
-### 配置
+### config
 
 ```ts
 // vite.config.js
@@ -181,9 +180,9 @@ export default defineConfig({
 	plugins: [
 		Vue(),
 		MetaLayouts({
-			target: 'src/layouts', // 布局目录，默认 src/layouts
-			defaultLayout: 'default', // 默认布局，默认为 default
-			importMode: 'sync' // 加载模式，支持 sync 和 async。默认为自动处理，SSG 时为 sync，非 SSG 时为 async
+			target: 'src/layouts', // Layout directory, default src/layouts
+			defaultLayout: 'default', // Default layout, which defaults to default
+			importMode: 'sync' // Load mode, support sync and async. The default is automatic processing, sync for SSGs, and async for non-SSGs
 		})
 	]
 })
@@ -192,9 +191,9 @@ export default defineConfig({
 <br />
 <br />
 
-### 类型声明 🦕
+### Type declarations 🦕
 
-如果你是 `ts` 项目，还可以在 `tsconfig.json` 中配置以下声明
+If you are a `ts` project, you can also configure the following declaration in `tsconfig.json`
 
 ```json
 {
@@ -207,41 +206,29 @@ export default defineConfig({
 <br />
 <br />
 
-### 注意
+### note
 
-由于布局系统需要在最外层嵌套一层布局路由，所以可能会造成路由表的获取混乱，此时可以用辅助的函数 👇
+Since the layout system needs to nest a layer of layout routes in the outermost layer, it may cause confusion in obtaining the routing table, and auxiliary functions can be used at this time 👇
 
 ```ts
 import { createGetRoutes } from 'virtual:meta-layouts'
 
 const getRoutes = createGetRoutes(router)
 
-// 获取路由表但是不包含布局路由
+// Gets the route table, but does not contain layout routes
 console.log(getRoutes())
 ```
 
 <br />
 <br />
 
-## 实现 👀
+## implement 👀
 
-布局实现思路来自 [vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)。
+The layout implementation idea comes from [vite-plugin-vue-layouts] (https://github.com/JohnCampionJr/vite-plugin-vue-layouts).
 
-但用了更简单方案 👉 [虚拟文件](https://vitejs.cn/guide/api-plugin.html#importing-a-virtual-file) 与 [Glob 导入](https://vitejs.cn/guide/features.html#glob-import)。
+However, the simpler scheme 👉 [virtual file] (https://vitejs.cn/guide/api-plugin.html#importing-a-virtual-file) and [glob import] (https://vitejs.cn/guide/features.html#glob-import) is used.
 
-该方案可以自动地做合理的 `hmr`。
-
-<br />
-<br />
-
-## 组织 🦔
-
-欢迎关注 **帝莎编程**
-
-- [官网](http://dishaxy.dishait.cn/)
-- [Gitee](https://gitee.com/dishait)
-- [Github](https://github.com/dishait)
-- [网易云课堂](https://study.163.com/provider/480000001892585/index.htm?share=2&shareId=480000001892585)
+The program can do reasonable 'HMR' automatically.
 
 <br />
 <br />
