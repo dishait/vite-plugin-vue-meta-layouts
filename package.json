@@ -24,10 +24,11 @@
   "scripts": {
     "build": "unbuild",
     "dev": "unbuild --stub",
+    "prepublish": "pnpm build",
     "play:dev": "pnpm -C example dev",
     "play:build": "pnpm -C example build",
     "play:preview": "pnpm -C example preview",
-    "release": "pnpm build && bumpp --commit --push --tag && npm publish"
+    "release": " bumpp --commit --push --tag && npm publish"
   },
   "keywords": [
     "vite",
