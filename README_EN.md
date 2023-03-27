@@ -12,7 +12,7 @@ English | [Chinese](./README.md)
 
 ## 动机 🤔
 
-A rewritten version of [vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)  with a reasonable 'HMR' in the latest version of 'Vite' !!
+A rewritten version of [vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)  with a reasonable `HMR` in the latest version of 'Vite' !!
 
 <br />
 <br />
@@ -226,9 +226,9 @@ console.log(getRoutes())
 
 The layout implementation idea comes from [vite-plugin-vue-layouts] (https://github.com/JohnCampionJr/vite-plugin-vue-layouts).
 
-However, the simpler scheme 👉 [virtual file] (https://vitejs.cn/guide/api-plugin.html#importing-a-virtual-file) and [glob import] (https://vitejs.cn/guide/features.html#glob-import) is used.
+However, the simpler scheme 👉 [virtual file](https://vitejs.cn/guide/api-plugin.html#importing-a-virtual-file) and [glob import](https://vitejs.cn/guide/features.html#glob-import) is used.
 
-The program can do reasonable 'HMR' automatically.
+The program can do reasonable `HMR` automatically.
 
 <br />
 <br />
