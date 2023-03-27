@@ -87,9 +87,11 @@ const routes = setupLayouts([home, about])
 
 ### 搭配文件路由
 
-当然也支持 [vite-plugin-pages](https://github.com/hannoeru/vite-plugin-pages) 文件路由哦 🤗
+当然也支持文件路由哦 🤗
 
-#### 安装
+#### [vite-plugin-pages](https://github.com/hannoeru/vite-plugin-pages)
+
+##### 安装
 
 ```shell
 npm i vite-plugin-pages -D
@@ -111,7 +113,7 @@ export default defineConfig({
 })
 ```
 
-#### 使用
+##### 使用
 
 ```ts
 import fileRoutes from '~pages' // 引入文件路由表
@@ -132,6 +134,31 @@ const router = createRouter({
 
 <route> { meta: { layout: 'other' } } </route>
 ```
+
+<br />
+<br />
+
+#### [unplugin-vue-router](https://github.com/posva/unplugin-vue-router)
+
+##### 安装
+
+```shell
+npm i unplugin-vue-router -D
+```
+
+##### 使用
+
+```ts
+import { routes } from "vue-router/auto/routes"; // 引入文件路由表
+import { setupLayouts } from "virtual:meta-layouts";
+import { createRouter, createWebHistory } from "vue-router";
+
+const router = createRouter({
+  routes: setupLayouts(routes), // 注册文件路由表
+  history: createWebHistory(),
+});
+```
+
 
 <br />
 <br />
