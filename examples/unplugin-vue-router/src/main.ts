@@ -10,6 +10,8 @@ console.log(_routes);
 
 const routes = setupLayouts(_routes);
 
+console.log("routes", routes);
+
 const router = createRouter({
   routes,
   history: createWebHistory(),

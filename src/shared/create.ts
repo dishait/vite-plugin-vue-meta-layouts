@@ -67,24 +67,35 @@ export const setupLayouts = routes => {
 		layouts[key] = ${isSync ? "module.default" : "module"}
 	})
 	
-  function deepSetupLayout(routes) {
+  function deepSetupLayout(routes, top = true) {
     return routes.map(route => {
       if (route.children?.length > 0) {
-        route.children = deepSetupLayout(route.children)
+        route.children = deepSetupLayout(route.children, false)
       }
       
-      if (!route.component) {
-        return route
-      }
-
-      return { 
-        path: route.path,
-        component: layouts[route.meta?.layout || '${defaultLayout}'],
-        children: [ {...route, path: ''} ],
-        meta: {
-          isLayout: true
+      if (top) {
+        return { 
+          path: route.path,
+          component: layouts[route.meta?.layout || '${defaultLayout}'],
+          children: [ {...route, path: ''} ],
+          meta: {
+            isLayout: true
+          }
         }
       }
+
+      if (route.meta?.layout) {
+        return { 
+          path: route.path,
+          component: layouts[route.meta?.layout],
+          children: [ {...route, path: ''} ],
+          meta: {
+            isLayout: true
+          }
+        }
+      }
+
+      return route
     })
   }
 
