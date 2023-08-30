@@ -1,13 +1,24 @@
-import { isVite2, normalizePath } from "./base";
+import { isVite2, normalizePath } from "./utils";
 
-export const createVirtualModuleID = (name: string) => {
+export function createVirtualModuleID(name: string) {
   const virtualModuleId = `virtual:${name}`;
   const resolvedVirtualModuleId = "\0" + virtualModuleId;
   return {
     virtualModuleId,
     resolvedVirtualModuleId,
   };
-};
+}
+
+export async function createVirtualGlob(
+  target: string,
+  isSync: boolean,
+) {
+  const g = `"${target}/**/*.vue"`;
+  if (await isVite2()) {
+    return isSync ? `import.meta.globEager(${g})` : `import.meta.glob(${g})`;
+  }
+  return `import.meta.glob(${g}, { eager: ${isSync} })`;
+}
 
 interface VirtualModuleCodeOptions {
   target: string;
@@ -15,20 +26,9 @@ interface VirtualModuleCodeOptions {
   importMode: "sync" | "async";
 }
 
-const createVirtualGlob = async (
-  target: string,
-  isSync: boolean,
-) => {
-  const g = `"${target}/**/*.vue"`;
-  if (await isVite2()) {
-    return isSync ? `import.meta.globEager(${g})` : `import.meta.glob(${g})`;
-  }
-  return `import.meta.glob(${g}, { eager: ${isSync} })`;
-};
-
-export const createVirtualModuleCode = async (
+export async function createVirtualModuleCode(
   options: VirtualModuleCodeOptions,
-) => {
+) {
   const { target, defaultLayout, importMode } = options;
 
   const normalizedTarget = normalizePath(target);
@@ -36,7 +36,7 @@ export const createVirtualModuleCode = async (
   const isSync = importMode === "sync";
 
   return `
-export const createGetRoutes = (router, withLayout = false) => {
+export function createGetRoutes(router, withLayout = false) {
 	const routes = router.getRoutes()
 	if (withLayout) {
 		return routes
@@ -44,7 +44,7 @@ export const createGetRoutes = (router, withLayout = false) => {
 	return () => routes.filter(route => !route.meta.isLayout)
 }
 
-export const setupLayouts = routes => {
+export function setupLayouts(routes) {
 	const layouts = {}
 
 	const modules = ${await createVirtualGlob(
@@ -91,4 +91,4 @@ export const setupLayouts = routes => {
 
 	return deepSetupLayout(routes)
 }`;
-};
+}

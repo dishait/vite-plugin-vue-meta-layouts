@@ -1,10 +1,7 @@
 import type { Plugin } from "vite";
-import {
-  createVirtualModuleCode,
-  createVirtualModuleID,
-} from "./shared/create";
+import { createVirtualModuleCode, createVirtualModuleID } from "./virtual";
 
-interface Options {
+export interface Options {
   /**
    * layouts dir
    * @default "src/layouts"
@@ -21,16 +18,17 @@ interface Options {
   importMode: "sync" | "async";
 }
 
-const usePlugin = (options?: Partial<Options>): Plugin => {
+export default function MetaLayouts(options: Partial<Options> = {}): Plugin {
   const {
     target = "src/layouts",
     defaultLayout = "default",
     importMode = process.env.VITE_SSG ? "sync" : "async",
-  } = options || {};
+  } = options;
 
   const { virtualModuleId, resolvedVirtualModuleId } = createVirtualModuleID(
     "meta-layouts",
   );
+
   return {
     name: "vite-plugin-vue-meta-layouts",
     resolveId(id) {
@@ -48,6 +46,4 @@ const usePlugin = (options?: Partial<Options>): Plugin => {
       }
     },
   };
-};
-
-export default usePlugin;
+}
