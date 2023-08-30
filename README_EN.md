@@ -6,13 +6,15 @@ Vite's Vue-Router's meta-information layout system
 
 ## README 🦉
 
-English | [Chinese](./README.md) 
+English | [Chinese](./README.md)
 
 <br />
 
 ## 动机 🤔
 
-A rewritten version of [vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)  with a reasonable `HMR` in the latest version of 'Vite' !!
+A rewritten version of
+[vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)
+with a reasonable `HMR` in the latest version of 'Vite' !!
 
 <br />
 <br />
@@ -29,31 +31,31 @@ npm i vite-plugin-vue-meta-layouts -D
 
 ```ts
 // vite.config.js
-import { defineConfig } from 'vite'
-import Vue from '@vitejs/plugin-vue'
-import MetaLayouts from 'vite-plugin-vue-meta-layouts'
+import { defineConfig } from "vite";
+import Vue from "@vitejs/plugin-vue";
+import MetaLayouts from "vite-plugin-vue-meta-layouts";
 
 export default defineConfig({
-	plugins: [Vue(), MetaLayouts()]
-})
+  plugins: [Vue(), MetaLayouts()],
+});
 ```
 
 #### usage
 
 ```ts
-import { setupLayouts } from 'virtual:meta-layouts'
-import { createRouter, createWebHistory } from 'vue-router'
+import { setupLayouts } from "virtual:meta-layouts";
+import { createRouter, createWebHistory } from "vue-router";
 
 const routes = setupLayouts([
-	{
-		// ... Page routes
-	}
-])
+  {
+    // ... Page routes
+  },
+]);
 
 const router = createRouter({
-	routes,
-	history: createWebHistory()
-})
+  routes,
+  history: createWebHistory(),
+});
 ```
 
 1. `layouts/default.vue` 👉 The default layout, which is now applied to the page
@@ -72,20 +74,20 @@ For example `layouts/other.vue`
 ```ts
 // apply layouts/default.vue layout
 const home = {
-	path: '/',
-	component: () => import('./pages/home.vue')
-}
+  path: "/",
+  component: () => import("./pages/home.vue"),
+};
 
 // apply layouts/other.vue layout
 const about = {
-	path: '/about',
-	component: () => import('./pages/home.vue'),
-	meta: {
-		layout: 'other' // Manage layouts through meta information
-	}
-}
+  path: "/about",
+  component: () => import("./pages/home.vue"),
+  meta: {
+    layout: "other", // Manage layouts through meta information
+  },
+};
 
-const routes = setupLayouts([home, about])
+const routes = setupLayouts([home, about]);
 ```
 
 <br />
@@ -104,34 +106,35 @@ npm i vite-plugin-pages -D
 
 ```ts
 // vite.config.js
-import { defineConfig } from 'vite'
-import Vue from '@vitejs/plugin-vue'
-import Pages from 'vite-plugin-pages' // Introducing the file routing plugin
-import MetaLayouts from 'vite-plugin-vue-meta-layouts'
+import { defineConfig } from "vite";
+import Vue from "@vitejs/plugin-vue";
+import Pages from "vite-plugin-pages"; // Introducing the file routing plugin
+import MetaLayouts from "vite-plugin-vue-meta-layouts";
 
 export default defineConfig({
-	plugins: [
-		Vue(),
-		Pages(), // Configure the configuration file routing plug-in
-		MetaLayouts()
-	]
-})
+  plugins: [
+    Vue(),
+    Pages(), // Configure the configuration file routing plug-in
+    MetaLayouts(),
+  ],
+});
 ```
 
 ##### 使用
 
 ```ts
-import fileRoutes from '~pages' // file routes
-import { setupLayouts } from 'virtual:meta-layouts'
-import { createRouter, createWebHistory } from 'vue-router'
+import fileRoutes from "~pages"; // file routes
+import { setupLayouts } from "virtual:meta-layouts";
+import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
-	routes: setupLayouts(fileRoutes), // Register the file routes
-	history: createWebHistory()
-})
+  routes: setupLayouts(fileRoutes), // Register the file routes
+  history: createWebHistory(),
+});
 ```
 
-At this time, the layout can be configured by `meta` of the custom block `route` in the page
+At this time, the layout can be configured by `meta` of the custom block `route`
+in the page
 
 ```html
 <!-- Your page -->
@@ -164,7 +167,6 @@ const router = createRouter({
 });
 ```
 
-
 <br />
 <br />
 
@@ -172,20 +174,20 @@ const router = createRouter({
 
 ```ts
 // vite.config.js
-import { defineConfig } from 'vite'
-import Vue from '@vitejs/plugin-vue'
-import MetaLayouts from 'vite-plugin-vue-meta-layouts'
+import { defineConfig } from "vite";
+import Vue from "@vitejs/plugin-vue";
+import MetaLayouts from "vite-plugin-vue-meta-layouts";
 
 export default defineConfig({
-	plugins: [
-		Vue(),
-		MetaLayouts({
-			target: 'src/layouts', // Layout directory, default src/layouts
-			defaultLayout: 'default', // Default layout, which defaults to default
-			importMode: 'sync' // Load mode, support sync and async. The default is automatic processing, sync for SSGs, and async for non-SSGs
-		})
-	]
-})
+  plugins: [
+    Vue(),
+    MetaLayouts({
+      target: "src/layouts", // Layout directory, default src/layouts
+      defaultLayout: "default", // Default layout, which defaults to default
+      importMode: "sync", // Load mode, support sync and async. The default is automatic processing, sync for SSGs, and async for non-SSGs
+    }),
+  ],
+});
 ```
 
 <br />
@@ -193,13 +195,14 @@ export default defineConfig({
 
 ### Type declarations 🦕
 
-If you are a `ts` project, you can also configure the following declaration in `tsconfig.json`
+If you are a `ts` project, you can also configure the following declaration in
+`tsconfig.json`
 
 ```json
 {
-	"compilerOptions": {
-		"types": ["vite-plugin-vue-meta-layouts/client"]
-	}
+  "compilerOptions": {
+    "types": ["vite-plugin-vue-meta-layouts/client"]
+  }
 }
 ```
 
@@ -208,15 +211,17 @@ If you are a `ts` project, you can also configure the following declaration in `
 
 ### note
 
-Since the layout system needs to nest a layer of layout routes in the outermost layer, it may cause confusion in obtaining the routing table, and auxiliary functions can be used at this time 👇
+Since the layout system needs to nest a layer of layout routes in the outermost
+layer, it may cause confusion in obtaining the routing table, and auxiliary
+functions can be used at this time 👇
 
 ```ts
-import { createGetRoutes } from 'virtual:meta-layouts'
+import { createGetRoutes } from "virtual:meta-layouts";
 
-const getRoutes = createGetRoutes(router)
+const getRoutes = createGetRoutes(router);
 
 // Gets the route table, but does not contain layout routes
-console.log(getRoutes())
+console.log(getRoutes());
 ```
 
 <br />
@@ -224,9 +229,12 @@ console.log(getRoutes())
 
 ## implement 👀
 
-The layout implementation idea comes from [vite-plugin-vue-layouts] (https://github.com/JohnCampionJr/vite-plugin-vue-layouts).
+The layout implementation idea comes from [vite-plugin-vue-layouts]
+(https://github.com/JohnCampionJr/vite-plugin-vue-layouts).
 
-However, the simpler scheme 👉 [virtual file](https://vitejs.cn/guide/api-plugin.html#importing-a-virtual-file) and [glob import](https://vitejs.cn/guide/features.html#glob-import) is used.
+However, the simpler scheme 👉
+[virtual file](https://vitejs.cn/guide/api-plugin.html#importing-a-virtual-file)
+and [glob import](https://vitejs.cn/guide/features.html#glob-import) is used.
 
 The program can do reasonable `HMR` automatically.
 

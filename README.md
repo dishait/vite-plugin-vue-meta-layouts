@@ -6,13 +6,14 @@
 
 ## README 🦉
 
-[English](./README_EN.md) | Chinese 
+[English](./README_EN.md) | Chinese
 
 <br />
 
 ## 动机 🤔
 
-[vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts) 的重写版本，在最新版本的 `vite` 中有合理的 `hmr` ！！
+[vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)
+的重写版本，在最新版本的 `vite` 中有合理的 `hmr` ！！
 
 <br />
 <br />
@@ -29,31 +30,31 @@ npm i vite-plugin-vue-meta-layouts -D
 
 ```ts
 // vite.config.js
-import { defineConfig } from 'vite'
-import Vue from '@vitejs/plugin-vue'
-import MetaLayouts from 'vite-plugin-vue-meta-layouts'
+import { defineConfig } from "vite";
+import Vue from "@vitejs/plugin-vue";
+import MetaLayouts from "vite-plugin-vue-meta-layouts";
 
 export default defineConfig({
-	plugins: [Vue(), MetaLayouts()]
-})
+  plugins: [Vue(), MetaLayouts()],
+});
 ```
 
 #### 使用
 
 ```ts
-import { setupLayouts } from 'virtual:meta-layouts'
-import { createRouter, createWebHistory } from 'vue-router'
+import { setupLayouts } from "virtual:meta-layouts";
+import { createRouter, createWebHistory } from "vue-router";
 
 const routes = setupLayouts([
-	{
-		// ... 页面路由配置
-	}
-])
+  {
+    // ... 页面路由配置
+  },
+]);
 
 const router = createRouter({
-	routes,
-	history: createWebHistory()
-})
+  routes,
+  history: createWebHistory(),
+});
 ```
 
 1. 创建 `layouts/default.vue` 默认布局，此时页面都会被应用该布局
@@ -73,20 +74,20 @@ const router = createRouter({
 ```ts
 // 应用 layouts/default.vue 布局
 const home = {
-	path: '/',
-	component: () => import('./pages/home.vue')
-}
+  path: "/",
+  component: () => import("./pages/home.vue"),
+};
 
 // 应用 layouts/other.vue 布局
 const about = {
-	path: '/about',
-	component: () => import('./pages/home.vue'),
-	meta: {
-		layout: 'other' // 通过元信息来管理布局
-	}
-}
+  path: "/about",
+  component: () => import("./pages/home.vue"),
+  meta: {
+    layout: "other", // 通过元信息来管理布局
+  },
+};
 
-const routes = setupLayouts([home, about])
+const routes = setupLayouts([home, about]);
 ```
 
 <br />
@@ -105,31 +106,31 @@ npm i vite-plugin-pages -D
 
 ```ts
 // vite.config.js
-import { defineConfig } from 'vite'
-import Vue from '@vitejs/plugin-vue'
-import Pages from 'vite-plugin-pages' // 引入文件路由插件
-import MetaLayouts from 'vite-plugin-vue-meta-layouts'
+import { defineConfig } from "vite";
+import Vue from "@vitejs/plugin-vue";
+import Pages from "vite-plugin-pages"; // 引入文件路由插件
+import MetaLayouts from "vite-plugin-vue-meta-layouts";
 
 export default defineConfig({
-	plugins: [
-		Vue(),
-		Pages(), // 配置文件路由插件
-		MetaLayouts()
-	]
-})
+  plugins: [
+    Vue(),
+    Pages(), // 配置文件路由插件
+    MetaLayouts(),
+  ],
+});
 ```
 
 ##### 使用
 
 ```ts
-import fileRoutes from '~pages' // 引入文件路由表
-import { setupLayouts } from 'virtual:meta-layouts'
-import { createRouter, createWebHistory } from 'vue-router'
+import fileRoutes from "~pages"; // 引入文件路由表
+import { setupLayouts } from "virtual:meta-layouts";
+import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
-	routes: setupLayouts(fileRoutes), // 注册文件路由表
-	history: createWebHistory()
-})
+  routes: setupLayouts(fileRoutes), // 注册文件路由表
+  history: createWebHistory(),
+});
 ```
 
 此时可以通过页面中的自定义块 `route` 的 `meta` 来做布局配置
@@ -165,7 +166,6 @@ const router = createRouter({
 });
 ```
 
-
 <br />
 <br />
 
@@ -173,20 +173,20 @@ const router = createRouter({
 
 ```ts
 // vite.config.js
-import { defineConfig } from 'vite'
-import Vue from '@vitejs/plugin-vue'
-import MetaLayouts from 'vite-plugin-vue-meta-layouts'
+import { defineConfig } from "vite";
+import Vue from "@vitejs/plugin-vue";
+import MetaLayouts from "vite-plugin-vue-meta-layouts";
 
 export default defineConfig({
-	plugins: [
-		Vue(),
-		MetaLayouts({
-			target: 'src/layouts', // 布局目录，默认 src/layouts
-			defaultLayout: 'default', // 默认布局，默认为 default
-			importMode: 'sync' // 加载模式，支持 sync 和 async。默认为自动处理，SSG 时为 sync，非 SSG 时为 async
-		})
-	]
-})
+  plugins: [
+    Vue(),
+    MetaLayouts({
+      target: "src/layouts", // 布局目录，默认 src/layouts
+      defaultLayout: "default", // 默认布局，默认为 default
+      importMode: "sync", // 加载模式，支持 sync 和 async。默认为自动处理，SSG 时为 sync，非 SSG 时为 async
+    }),
+  ],
+});
 ```
 
 <br />
@@ -198,9 +198,9 @@ export default defineConfig({
 
 ```json
 {
-	"compilerOptions": {
-		"types": ["vite-plugin-vue-meta-layouts/client"]
-	}
+  "compilerOptions": {
+    "types": ["vite-plugin-vue-meta-layouts/client"]
+  }
 }
 ```
 
@@ -209,15 +209,16 @@ export default defineConfig({
 
 ### 注意
 
-由于布局系统需要在最外层嵌套一层布局路由，所以可能会造成路由表的获取混乱，此时可以用辅助的函数 👇
+由于布局系统需要在最外层嵌套一层布局路由，所以可能会造成路由表的获取混乱，此时可以用辅助的函数
+👇
 
 ```ts
-import { createGetRoutes } from 'virtual:meta-layouts'
+import { createGetRoutes } from "virtual:meta-layouts";
 
-const getRoutes = createGetRoutes(router)
+const getRoutes = createGetRoutes(router);
 
 // 获取路由表但是不包含布局路由
-console.log(getRoutes())
+console.log(getRoutes());
 ```
 
 <br />
@@ -225,9 +226,12 @@ console.log(getRoutes())
 
 ## 实现 👀
 
-布局实现思路来自 [vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)。
+布局实现思路来自
+[vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)。
 
-但用了更简单方案 👉 [虚拟文件](https://vitejs.cn/guide/api-plugin.html#importing-a-virtual-file) 与 [Glob 导入](https://vitejs.cn/guide/features.html#glob-import)。
+但用了更简单方案 👉
+[虚拟文件](https://vitejs.cn/guide/api-plugin.html#importing-a-virtual-file) 与
+[Glob 导入](https://vitejs.cn/guide/features.html#glob-import)。
 
 该方案可以自动地做合理的 `hmr`。
 
