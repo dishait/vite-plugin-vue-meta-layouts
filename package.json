@@ -9,6 +9,9 @@
     "type": "git",
     "url": "git+https://github.com/dishait/vite-plugin-vue-meta-layouts.git"
   },
+  "build": {
+    "failOnWarn": false
+  },
   "exports": {
     "./client": {
       "types": "./client.d.ts"
