@@ -211,7 +211,7 @@ export default defineConfig({
 
 使用
 [volar-plugin-vue-router](https://github.com/kingyue737/volar-plugin-vue-router)
-可以带来友好的代码提示
+可以带来友好的代码提示.
 
 <br />
 <br />

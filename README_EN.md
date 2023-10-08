@@ -211,9 +211,9 @@ If you are a `ts` project, you can also configure the following declaration in
 
 ### `route` Code Hints 💡
 
-使用
+Use
 [volar-plugin-vue-router](https://github.com/kingyue737/volar-plugin-vue-router)
-可以带来友好的代码提示
+can bring friendly code hints.
 
 <br />
 <br />
