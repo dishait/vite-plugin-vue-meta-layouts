@@ -209,6 +209,15 @@ If you are a `ts` project, you can also configure the following declaration in
 <br />
 <br />
 
+### `route` Code Hints 💡
+
+使用
+[volar-plugin-vue-router](https://github.com/kingyue737/volar-plugin-vue-router)
+可以带来友好的代码提示
+
+<br />
+<br />
+
 ### note
 
 Since the layout system needs to nest a layer of layout routes in the outermost
