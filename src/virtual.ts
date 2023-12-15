@@ -63,7 +63,7 @@ export function setupLayouts(routes) {
         route.children = deepSetupLayout(route.children, false)
       }
       
-      if (top) {
+      if (top && route.meta?.layout !== false) {
         return { 
           path: route.path,
           component: layouts[route.meta?.layout || '${defaultLayout}'],
