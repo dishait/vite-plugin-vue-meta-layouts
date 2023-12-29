@@ -30,7 +30,7 @@
   "scripts": {
     "build": "unbuild",
     "dev": "unbuild --stub",
-    "prepublish": "pnpm build",
+    "prepublishOnly": "pnpm build",
     "release": " bumpp --commit --push --tag && npm publish"
   },
   "keywords": [
