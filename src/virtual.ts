@@ -24,16 +24,26 @@ interface VirtualModuleCodeOptions {
   target: string;
   defaultLayout: string;
   importMode: "sync" | "async";
+  skipTopLevelRouteLayout: boolean;
 }
 
 export async function createVirtualModuleCode(
   options: VirtualModuleCodeOptions,
 ) {
-  const { target, defaultLayout, importMode } = options;
+  const { target, defaultLayout, importMode, skipTopLevelRouteLayout } =
+    options;
 
   const normalizedTarget = normalizePath(target);
 
   const isSync = importMode === "sync";
+
+  const skipCode =
+    `// unplugin-vue-router adds a top-level route to the routing group, which we should skip. (ref → https://github.com/JohnCampionJr/vite-plugin-vue-layouts/issues/134)
+  const skipLayout = !route.component && route.children?.find(r => (r.path === '' || r.path === '/') && r.meta?.isLayout)  
+
+  if (skipLayout) {
+    return route
+  }`;
 
   return `
 export function createGetRoutes(router, withLayout = false) {
@@ -63,13 +73,17 @@ export function setupLayouts(routes) {
         route.children = deepSetupLayout(route.children, false)
       }
       
-      if (top && route.meta?.layout !== false) {
-        return { 
-          path: route.path,
-          component: layouts[route.meta?.layout || '${defaultLayout}'],
-          children: [ {...route, path: ''} ],
-          meta: {
-            isLayout: true
+      if (top) {
+        ${skipTopLevelRouteLayout ? skipCode : ""}
+        if (route.meta?.layout !== false) {
+          return { 
+            path: route.path,
+            component: layouts[route.meta?.layout || '${defaultLayout}'],
+            // ref → https://github.com/JohnCampionJr/vite-plugin-vue-layouts/pull/97
+            children: route.path === '/' ? [route] : [{...route, path: ''}],
+            meta: {
+              isLayout: true
+            }
           }
         }
       }

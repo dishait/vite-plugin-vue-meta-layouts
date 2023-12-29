@@ -8,7 +8,9 @@ export default defineConfig({
   plugins: [
     Vue(),
     Inspect(),
-    MetaLayouts(),
+    MetaLayouts({
+      skipTopLevelRouteLayout: true,
+    }),
     VueRouter({
       dts: "types/typed-router.d.ts",
     }),

@@ -9,7 +9,7 @@ export function normalizePath(path: string) {
 export async function isVite2() {
   const info = await getPackageInfo("vite");
   if (info) {
-    return /^.?2/.test(info.version);
+    return /^.?2/.test(info.version!);
   }
   return false;
 }

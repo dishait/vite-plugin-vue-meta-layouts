@@ -15,7 +15,13 @@ export interface Options {
   /**
    * default auto resolve
    */
-  importMode: "sync" | "async";
+  importMode?: "sync" | "async";
+  /**
+   * If opened, fix →
+   * https://github.com/JohnCampionJr/vite-plugin-vue-layouts/issues/134
+   * @default false
+   */
+  skipTopLevelRouteLayout?: boolean;
 }
 
 export default function MetaLayouts(options: Partial<Options> = {}): Plugin {
@@ -23,6 +29,7 @@ export default function MetaLayouts(options: Partial<Options> = {}): Plugin {
     target = "src/layouts",
     defaultLayout = "default",
     importMode = process.env.VITE_SSG ? "sync" : "async",
+    skipTopLevelRouteLayout = false,
   } = options;
 
   const { virtualModuleId, resolvedVirtualModuleId } = createVirtualModuleID(
@@ -42,6 +49,7 @@ export default function MetaLayouts(options: Partial<Options> = {}): Plugin {
           target,
           importMode,
           defaultLayout,
+          skipTopLevelRouteLayout,
         });
       }
     },
