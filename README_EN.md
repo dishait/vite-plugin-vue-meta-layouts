@@ -157,12 +157,12 @@ npm i unplugin-vue-router -D
 ##### usage
 
 ```ts
-import { routes } from "vue-router/auto/routes" // file routes
+import { routes } from "vue-router/auto-routes" // file routes
 import { setupLayouts } from "virtual:meta-layouts"
 import { createRouter, createWebHistory } from "vue-router"
 
 const router = createRouter({
-  routes: setupLayouts(routes), // Register the file routes
+  extendRoutes: () => setupLayouts(routes), // Register the file routes
   history: createWebHistory(),
 })
 ```
