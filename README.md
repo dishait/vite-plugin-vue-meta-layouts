@@ -156,9 +156,9 @@ npm i unplugin-vue-router -D
 ##### 使用
 
 ```ts
-import { routes } from "vue-router/auto/routes" // 引入文件路由表
+import { routes } from "vue-router/auto-routes" // 引入文件路由表
 import { setupLayouts } from "virtual:meta-layouts"
-import { createRouter, createWebHistory } from "vue-router"
+import { createRouter, createWebHistory } from "vue-router/auto"
 
 const router = createRouter({
   routes: setupLayouts(routes), // 注册文件路由表
