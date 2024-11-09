@@ -64,8 +64,6 @@ export function setupLayouts(routes) {
     isSync,
     excludes
   )}
-  
-  console.log(modules)
 
 	Object.entries(modules).forEach(([name, module]) => {
 		let key = name.replace("${normalizedTarget}/", '').replace('.vue', '')
