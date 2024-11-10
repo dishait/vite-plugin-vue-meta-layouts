@@ -18,13 +18,12 @@ export async function createVirtualGlob(
     .join(",");
   const g = excludeGlobs === ""
     ? `"${target}/**/*.vue"`
-    : `"${target}/**/*.vue",` + excludeGlobs;
+    : `["${target}/**/*.vue", ${excludeGlobs}]`;
+
   if (await isVite2()) {
-    return isSync
-      ? `import.meta.globEager([${g}])`
-      : `import.meta.glob([${g}])`;
+    return isSync ? `import.meta.globEager(${g})` : `import.meta.glob(${g})`;
   }
-  return `import.meta.glob([${g}], { eager: ${isSync} })`;
+  return `import.meta.glob(${g}, { eager: ${isSync} })`;
 }
 
 interface VirtualModuleCodeOptions {
