@@ -14,7 +14,8 @@ export async function createVirtualGlob(
   isSync: boolean,
   excludes: string[]
 ) {
-  const g = excludes.length > 0 ? `"${target}/**/*.vue","` + excludes.map(exclude => `!${target}/${exclude}`).join("\",\"") + "\"" : `"${target}/**/*.vue"`;
+  const excludeGlobs = excludes.map(exclude => `"!${target}/${exclude}"`).join(",")  
+  const g = excludeGlobs === '' ? `"${target}/**/*.vue"` ： `"${target}/**/*.vue",` + excludeGlobs
   if (await isVite2()) {
     return isSync ? `import.meta.globEager([${g}])` : `import.meta.glob([${g}])`;
   }
