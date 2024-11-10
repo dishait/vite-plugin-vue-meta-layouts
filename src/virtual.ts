@@ -12,12 +12,17 @@ export function createVirtualModuleID(name: string) {
 export async function createVirtualGlob(
   target: string,
   isSync: boolean,
-  excludes: string[]
+  excludes: string[],
 ) {
-  const excludeGlobs = excludes.map(exclude => `"!${target}/${exclude}"`).join(",")  
-  const g = excludeGlobs === '' ? `"${target}/**/*.vue"` ： `"${target}/**/*.vue",` + excludeGlobs
+  const excludeGlobs = excludes.map((exclude) => `"!${target}/${exclude}"`)
+    .join(",");
+  const g = excludeGlobs === ""
+    ? `"${target}/**/*.vue"`
+    : `"${target}/**/*.vue",` + excludeGlobs;
   if (await isVite2()) {
-    return isSync ? `import.meta.globEager([${g}])` : `import.meta.glob([${g}])`;
+    return isSync
+      ? `import.meta.globEager([${g}])`
+      : `import.meta.glob([${g}])`;
   }
   return `import.meta.glob([${g}], { eager: ${isSync} })`;
 }
@@ -33,8 +38,13 @@ interface VirtualModuleCodeOptions {
 export async function createVirtualModuleCode(
   options: VirtualModuleCodeOptions,
 ) {
-  const { target, defaultLayout, importMode, skipTopLevelRouteLayout, excludes } =
-    options;
+  const {
+    target,
+    defaultLayout,
+    importMode,
+    skipTopLevelRouteLayout,
+    excludes,
+  } = options;
 
   const normalizedTarget = normalizePath(target);
 
@@ -63,7 +73,7 @@ export function setupLayouts(routes) {
 	const modules = ${await createVirtualGlob(
     normalizedTarget,
     isSync,
-    excludes
+    excludes,
   )}
 
 	Object.entries(modules).forEach(([name, module]) => {
