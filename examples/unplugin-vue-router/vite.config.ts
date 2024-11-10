@@ -10,6 +10,7 @@ export default defineConfig({
     Inspect(),
     MetaLayouts({
       skipTopLevelRouteLayout: true,
+      excludes: ["**/components/**/*.vue"]
     }),
     VueRouter({
       dts: "types/typed-router.d.ts",

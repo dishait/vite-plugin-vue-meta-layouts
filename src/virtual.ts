@@ -12,12 +12,14 @@ export function createVirtualModuleID(name: string) {
 export async function createVirtualGlob(
   target: string,
   isSync: boolean,
+  excludes: string[]
 ) {
-  const g = `"${target}/**/*.vue"`;
+  const excludeGlobs = excludes.map(exclude => `"!${target}/${exclude}"`).join(",")  
+  const g = excludeGlobs === '' ? `"${target}/**/*.vue"` ： `"${target}/**/*.vue",` + excludeGlobs
   if (await isVite2()) {
-    return isSync ? `import.meta.globEager(${g})` : `import.meta.glob(${g})`;
+    return isSync ? `import.meta.globEager([${g}])` : `import.meta.glob([${g}])`;
   }
-  return `import.meta.glob(${g}, { eager: ${isSync} })`;
+  return `import.meta.glob([${g}], { eager: ${isSync} })`;
 }
 
 interface VirtualModuleCodeOptions {
@@ -25,12 +27,13 @@ interface VirtualModuleCodeOptions {
   defaultLayout: string;
   importMode: "sync" | "async";
   skipTopLevelRouteLayout: boolean;
+  excludes: string[];
 }
 
 export async function createVirtualModuleCode(
   options: VirtualModuleCodeOptions,
 ) {
-  const { target, defaultLayout, importMode, skipTopLevelRouteLayout } =
+  const { target, defaultLayout, importMode, skipTopLevelRouteLayout, excludes } =
     options;
 
   const normalizedTarget = normalizePath(target);
@@ -60,8 +63,9 @@ export function setupLayouts(routes) {
 	const modules = ${await createVirtualGlob(
     normalizedTarget,
     isSync,
+    excludes
   )}
-  
+
 	Object.entries(modules).forEach(([name, module]) => {
 		let key = name.replace("${normalizedTarget}/", '').replace('.vue', '')
 		layouts[key] = ${isSync ? "module.default" : "module"}
@@ -75,8 +79,8 @@ export function setupLayouts(routes) {
       
       if (top) {
         ${skipTopLevelRouteLayout ? skipCode : ""}
-        if (route.meta?.layout !== false) {
-          return { 
+        if (!!route.meta?.layout !== false) {
+          return {
             path: route.path,
             component: layouts[route.meta?.layout || '${defaultLayout}'],
             // ref → https://github.com/JohnCampionJr/vite-plugin-vue-layouts/pull/97

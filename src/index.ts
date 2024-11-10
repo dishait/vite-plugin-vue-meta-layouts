@@ -9,7 +9,7 @@ export interface Options {
   target?: string;
   /**
    * default layout
-   * @default "default"
+   * @default "default"  
    */
   defaultLayout?: string;
   /**
@@ -22,6 +22,10 @@ export interface Options {
    * @default false
    */
   skipTopLevelRouteLayout?: boolean;
+  /**
+   * excludes path 
+   */
+  excludes?: string[];  
 }
 
 export default function MetaLayouts(options: Partial<Options> = {}): Plugin {
@@ -29,7 +33,8 @@ export default function MetaLayouts(options: Partial<Options> = {}): Plugin {
     target = "src/layouts",
     defaultLayout = "default",
     importMode = process.env.VITE_SSG ? "sync" : "async",
-    skipTopLevelRouteLayout = false,
+    skipTopLevelRouteLayout = false,  
+    excludes = []
   } = options;
 
   const { virtualModuleId, resolvedVirtualModuleId } = createVirtualModuleID(
@@ -50,6 +55,7 @@ export default function MetaLayouts(options: Partial<Options> = {}): Plugin {
           importMode,
           defaultLayout,
           skipTopLevelRouteLayout,
+          excludes
         });
       }
     },
