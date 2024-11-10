@@ -30,31 +30,31 @@ npm i vite-plugin-vue-meta-layouts -D
 
 ```ts
 // vite.config.js
-import { defineConfig } from "vite"
-import Vue from "@vitejs/plugin-vue"
-import MetaLayouts from "vite-plugin-vue-meta-layouts"
+import { defineConfig } from "vite";
+import Vue from "@vitejs/plugin-vue";
+import MetaLayouts from "vite-plugin-vue-meta-layouts";
 
 export default defineConfig({
   plugins: [Vue(), MetaLayouts()],
-})
+});
 ```
 
 #### 使用
 
 ```ts
-import { setupLayouts } from "virtual:meta-layouts"
-import { createRouter, createWebHistory } from "vue-router"
+import { setupLayouts } from "virtual:meta-layouts";
+import { createRouter, createWebHistory } from "vue-router";
 
 const routes = setupLayouts([
   {
     // ... 页面路由配置
   },
-])
+]);
 
 const router = createRouter({
   routes,
   history: createWebHistory(),
-})
+});
 ```
 
 1. 创建 `layouts/default.vue` 默认布局，此时页面都会被应用该布局
@@ -76,7 +76,7 @@ const router = createRouter({
 const home = {
   path: "/",
   component: () => import("./pages/home.vue"),
-}
+};
 
 // 应用 layouts/other.vue 布局
 const about = {
@@ -85,9 +85,9 @@ const about = {
   meta: {
     layout: "other", // 通过元信息来管理布局
   },
-}
+};
 
-const routes = setupLayouts([home, about])
+const routes = setupLayouts([home, about]);
 ```
 
 <br />
@@ -106,10 +106,10 @@ npm i vite-plugin-pages -D
 
 ```ts
 // vite.config.js
-import { defineConfig } from "vite"
-import Vue from "@vitejs/plugin-vue"
-import Pages from "vite-plugin-pages" // 引入文件路由插件
-import MetaLayouts from "vite-plugin-vue-meta-layouts"
+import { defineConfig } from "vite";
+import Vue from "@vitejs/plugin-vue";
+import Pages from "vite-plugin-pages"; // 引入文件路由插件
+import MetaLayouts from "vite-plugin-vue-meta-layouts";
 
 export default defineConfig({
   plugins: [
@@ -117,20 +117,20 @@ export default defineConfig({
     Pages(), // 配置文件路由插件
     MetaLayouts(),
   ],
-})
+});
 ```
 
 ##### 使用
 
 ```ts
-import fileRoutes from "~pages" // 引入文件路由表
-import { setupLayouts } from "virtual:meta-layouts"
-import { createRouter, createWebHistory } from "vue-router"
+import fileRoutes from "~pages"; // 引入文件路由表
+import { setupLayouts } from "virtual:meta-layouts";
+import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
   routes: setupLayouts(fileRoutes), // 注册文件路由表
   history: createWebHistory(),
-})
+});
 ```
 
 此时可以通过页面中的自定义块 `route` 的 `meta` 来做布局配置
@@ -156,14 +156,14 @@ npm i unplugin-vue-router -D
 ##### 使用
 
 ```ts
-import { routes } from "vue-router/auto-routes" // 引入文件路由表
-import { setupLayouts } from "virtual:meta-layouts"
-import { createRouter, createWebHistory } from "vue-router/auto"
+import { routes } from "vue-router/auto-routes"; // 引入文件路由表
+import { setupLayouts } from "virtual:meta-layouts";
+import { createRouter, createWebHistory } from "vue-router/auto";
 
 const router = createRouter({
   routes: setupLayouts(routes), // 注册文件路由表
   history: createWebHistory(),
-})
+});
 ```
 
 <br />
@@ -173,9 +173,9 @@ const router = createRouter({
 
 ```ts
 // vite.config.js
-import { defineConfig } from "vite"
-import Vue from "@vitejs/plugin-vue"
-import MetaLayouts from "vite-plugin-vue-meta-layouts"
+import { defineConfig } from "vite";
+import Vue from "@vitejs/plugin-vue";
+import MetaLayouts from "vite-plugin-vue-meta-layouts";
 
 export default defineConfig({
   plugins: [
@@ -185,9 +185,10 @@ export default defineConfig({
       defaultLayout: "default", // 默认布局，默认为 default
       importMode: "sync", // 加载模式，支持 sync 和 async。默认为自动处理，SSG 时为 sync，非 SSG 时为 async
       skipTopLevelRouteLayout: true, // 打开修复 https://github.com/JohnCampionJr/vite-plugin-vue-layouts/issues/134，默认为 false 关闭
+      excludes: [], // 排除路径，仅接受 glob
     }),
   ],
-})
+});
 ```
 
 <br />
@@ -223,12 +224,12 @@ export default defineConfig({
 👇
 
 ```ts
-import { createGetRoutes } from "virtual:meta-layouts"
+import { createGetRoutes } from "virtual:meta-layouts";
 
-const getRoutes = createGetRoutes(router)
+const getRoutes = createGetRoutes(router);
 
 // 获取路由表但是不包含布局路由
-console.log(getRoutes())
+console.log(getRoutes());
 ```
 
 <br />
