@@ -88,7 +88,7 @@ export function setupLayouts(routes) {
       
       if (top) {
         ${skipTopLevelRouteLayout ? skipCode : ""}
-        if (!!route.meta?.layout !== false) {
+        if (route.meta?.layout !== false) {
           return {
             path: route.path,
             component: layouts[route.meta?.layout || '${defaultLayout}'],
