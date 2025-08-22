@@ -186,6 +186,7 @@ export default defineConfig({
       importMode: "sync", // 加载模式，支持 sync 和 async。默认为自动处理，SSG 时为 sync，非 SSG 时为 async
       skipTopLevelRouteLayout: true, // 打开修复 https://github.com/JohnCampionJr/vite-plugin-vue-layouts/issues/134，默认为 false 关闭
       excludes: [], // 排除路径，仅接受 glob
+      metaName: "layout", // meta 名称，默认是 layout
     }),
   ],
 });

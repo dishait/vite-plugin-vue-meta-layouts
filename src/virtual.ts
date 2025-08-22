@@ -32,6 +32,7 @@ interface VirtualModuleCodeOptions {
   importMode: "sync" | "async";
   skipTopLevelRouteLayout: boolean;
   excludes: string[];
+  metaName: string;
 }
 
 export async function createVirtualModuleCode(
@@ -43,6 +44,7 @@ export async function createVirtualModuleCode(
     importMode,
     skipTopLevelRouteLayout,
     excludes,
+    metaName,
   } = options;
 
   const normalizedTarget = normalizePath(target);
@@ -88,10 +90,10 @@ export function setupLayouts(routes) {
       
       if (top) {
         ${skipTopLevelRouteLayout ? skipCode : ""}
-        if (route.meta?.layout !== false) {
+        if (route.meta?.${metaName} !== false) {
           return {
             path: route.path,
-            component: layouts[route.meta?.layout || '${defaultLayout}'],
+            component: layouts[route.meta?.${metaName} || '${defaultLayout}'],
             // ref → https://github.com/JohnCampionJr/vite-plugin-vue-layouts/pull/97
             children: route.path === '/' ? [route] : [{...route, path: ''}],
             meta: {
@@ -101,10 +103,10 @@ export function setupLayouts(routes) {
         }
       }
 
-      if (route.meta?.layout) {
+      if (route.meta?.${metaName}) {
         return { 
           path: route.path,
-          component: layouts[route.meta?.layout],
+          component: layouts[route.meta?.${metaName}],
           children: [ {...route, path: ''} ],
           meta: {
             isLayout: true

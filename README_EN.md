@@ -187,6 +187,7 @@ export default defineConfig({
       importMode: "sync", // Load mode, support sync and async. The default is automatic processing, sync for SSGs, and async for non-SSGs
       skipTopLevelRouteLayout: true, // Turn on fixing https://github.com/JohnCampionJr/vite-plugin-vue-layouts/issues/134, default is false Close
       excludes: [], // Exclude paths, only accept glob
+      metaName: "layout", // meta name, default is layout
     }),
   ],
 });
