@@ -2,12 +2,12 @@ declare module "virtual:meta-layouts" {
   import type {
     Router,
     RouteRecordNormalized,
-    RouteRecordRaw,
+    RouterOptions,
   } from "vue-router";
 
   export const setupLayouts: (
-    routes: RouteRecordRaw[],
-  ) => RouteRecordRaw[];
+    routes: RouterOptions['routes'],
+  ) => RouterOptions['routes'];
 
   export const createGetRoutes: (
     router: Router,
